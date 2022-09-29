@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\EjemploController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //         ('url', [controller, 'metodo'])
 Route::post('area/store',[AreaController::class, 'store']);
 Route::resource('areas',AreaController::class);
-
+Route::post('ejemplo',[EjemploController::class, 'store']);
+Route::resource('ejemplos', EjemploController::class);
+Route::get('me2',[AuthController::class, 'me2']);
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);
 Route::group(['middleware'=>'api'], function () {

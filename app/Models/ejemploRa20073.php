@@ -11,6 +11,7 @@ class ejemploRa20073 extends Model
 
     protected $fillable = [
         'nombre',
-        'descripcion'
+        'descripcion',
+        'cantidad'
     ];
 }

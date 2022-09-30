@@ -14,7 +14,9 @@ class EjemploRa20073Controller extends Controller
      */
     public function index()
     {
-        //
+        
+        $ejemploRa20073=ejemploRa20073::all();
+        return $ejemploRa20073;
     }
 
     /**
@@ -35,7 +37,9 @@ class EjemploRa20073Controller extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request);
+        $ejemploRa20073=request(['nombre','descripcion','cantidad']);
+        ejemploRa20073::create($ejemploRa20073);
+        return response()->json($ejemploRa20073);
 
     }
 
@@ -45,9 +49,11 @@ class EjemploRa20073Controller extends Controller
      * @param  \App\Models\ejemploRa20073  $ejemploRa20073
      * @return \Illuminate\Http\Response
      */
-    public function show(ejemploRa20073 $ejemploRa20073)
+    public function show($id)
     {
-        //
+        
+        $ejemploRa20073=ejemploRa20073::findOrfail($id);
+        return $ejemploRa20073;
     }
 
     /**
@@ -70,7 +76,9 @@ class EjemploRa20073Controller extends Controller
      */
     public function update(Request $request, ejemploRa20073 $ejemploRa20073)
     {
-        //
+       $ejemploRa20073->nombre=request('nombre','');
+       $ejemploRa20073->save();
+       return $ejemploRa20073;
     }
 
     /**
@@ -81,6 +89,7 @@ class EjemploRa20073Controller extends Controller
      */
     public function destroy(ejemploRa20073 $ejemploRa20073)
     {
-        //
+         $ejemploRa20073->delete();
+         return response()->json('se elimino');
     }
 }

@@ -24,7 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('area/store',[AreaController::class, 'store']);
 Route::resource('areas',AreaController::class);
 
+
 Route::post('ejemploRa20073',[EjemploRa20073Controller::class, 'store']);
+Route::resource('ejemploRa20073',EjemploRa20073Controller::class);
+
+
 
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\EjemploRa20073Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //         ('url', [controller, 'metodo'])
 Route::post('area/store',[AreaController::class, 'store']);
 Route::resource('areas',AreaController::class);
+
+Route::post('ejemploRa20073',[EjemploRa20073Controller::class, 'store']);
 
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

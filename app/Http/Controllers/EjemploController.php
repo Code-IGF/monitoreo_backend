@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
+use App\Models\ejemplo;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
-class AreaController extends Controller
+class EjemploController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas=Area::all();
-        return response()->json($areas);
+        $ejemplos=ejemplo::all();
+        return $ejemplos;
     }
 
     /**
@@ -35,32 +36,32 @@ class AreaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $area = request(['nombre','descripcion']);
-        $area=Area::create($area);
-
-        return response()->json($area);
+    {   
+        $ejemplo=request(['nombre','descripcion','cantidad']);
+        ejemplo::create($ejemplo);
+        return response()->json($ejemplo);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Area  $area
+     * @param  \App\Models\ejemplo  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id)
     {
-        $area=Area::findOrFail($id);
-        return response()->json($area);
+
+        $ejemplo=ejemplo::findOrFail($id);
+        return $ejemplo;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Area  $area
+     * @param  \App\Models\ejemplo  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Area $area)
+    public function edit(ejemplo $ejemplo)
     {
         //
     }
@@ -69,27 +70,26 @@ class AreaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Area  $area
+     * @param  \App\Models\ejemplo  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Area $area)
+    public function update(Request $request, ejemplo $ejemplo)
     {
-        /* $area->nombre=$request(['nombre']);
-        $area->descripcion=$request(['descripcion']);
-        $area->save(); */
-        //Area::updateOrCreate($area);
-        return response()->json($request->put());
-        //return response()->json($request->all());
+        $ejemplo->nombre=request('nombre',"");
+        $ejemplo->save();
+
+        return $ejemplo;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Area  $area
+     * @param  \App\Models\ejemplo  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Area $area)
+    public function destroy(ejemplo $ejemplo)
     {
-        //
+        $ejemplo->delete();
+        return response()->json('Se elimino');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Validator;
 class PermisosController extends Controller
 {
     /**
@@ -38,13 +39,17 @@ class PermisosController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|min:10|max:255|unique:permissions',
-        ]);
-        
+        $validator = Validator::make($request->all(),
+        ['name' => 'required|min:10|max:255|unique:permissions',]);
+        if($validator->fails())
+        {
+            return response()->json('Error no se pudo crear el permiso');
+        }
+        else{
         $permiso=request(['name']);
         Permission::create($permiso);
         return response()->json('se creo el permiso');
+        }
     }
 
     /**

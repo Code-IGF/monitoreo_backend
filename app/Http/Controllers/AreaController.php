@@ -74,11 +74,12 @@ class AreaController extends Controller
      */
     public function update(Request $request, Area $area)
     {
-        /* $area->nombre=$request(['nombre']);
-        $area->descripcion=$request(['descripcion']);
-        $area->save(); */
+
+        $area->nombre=$request->nombre;
+        $area->descripcion=$request->descripcion;
+        $area->save();
         //Area::updateOrCreate($area);
-        return response()->json($request->put());
+        return response()->json($area);
         //return response()->json($request->all());
     }
 

@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Controllers\ejemplo as ControllersEjemplo;
-use App\Models\ejemplo;
-use Ejemplo as GlobalEjemplo;
-
 use Illuminate\Http\Request;
-
-class EjemploController extends Controller
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Validator;
+class PermisosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +15,8 @@ class EjemploController extends Controller
      */
     public function index()
     {
-
-        $ejemplo = ejemplo::all();
-        return $ejemplo;
-
+        $permisos =Permission::all();
+        return $permisos;
     }
 
     /**
@@ -31,7 +26,9 @@ class EjemploController extends Controller
      */
     public function create()
     {
-        //
+        /*$permiso=request(['name']);
+        Permission::create($permiso);
+        return response()->json('se creo el permiso');*/
     }
 
     /**
@@ -42,35 +39,37 @@ class EjemploController extends Controller
      */
     public function store(Request $request)
     {
-        $ejemplo = request(['nombre','descripcion','cantidad']);
-
-        ejemplo::create($ejemplo);
-        return response()->json($ejemplo);
+        $validator = Validator::make($request->all(),
+        ['name' => 'required|min:10|max:255|unique:permissions',]);
+        if($validator->fails())
+        {
+            return response()->json('Error no se pudo crear el permiso');
+        }
+        else{
+        $permiso=request(['name']);
+        Permission::create($permiso);
+        return response()->json('se creo el permiso');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Permission $permiso)
     {
-        $ejemplo =ejemplo::findOrFail($id);
-
-        return $ejemplo;
+        return $permiso;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-
     {
         //
     }
@@ -79,32 +78,26 @@ class EjemploController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,ejemplo $ejemplo)
+    public function update(Request $request, Permission $permiso)
     {
-        $ejemplo->nombre=request('nombre', "");
-        $ejemplo->save();
-        
-
-        return $ejemplo;
+        $permiso-> name = request('name', "");
+        $permiso->save();
+        return response()->json('Permiso actualizado');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-
      * @param  int  $id
-
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ejemplo $ejemplo)
+    public function destroy(Permission $permiso)
     {
-        $ejemplo->delete();
-        
-
-        return response()->json('Se elimino');
+        $permiso->delete();
+         return response()->json('Se elimino el permiso');
+       //return $permiso;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipo;
 use Illuminate\Http\Request;
+use Spatie\Permission\Contracts\Permission;
 
 class EquipoController extends Controller
 {
@@ -24,7 +25,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -78,8 +79,8 @@ class EquipoController extends Controller
      * @param  \App\Models\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipo $equipo)
+    public function destroy()
     {
-        //
+        
     }
 }

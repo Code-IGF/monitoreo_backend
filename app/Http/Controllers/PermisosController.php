@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipo;
 use Illuminate\Http\Request;
-use Spatie\Permission\Contracts\Permission;
-
-class EquipoController extends Controller
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+class PermisosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,8 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        //
+        $permisos =Permission::all();
+        return $permisos;
     }
 
     /**
@@ -25,7 +25,9 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        
+        /*$permiso=request(['name']);
+        Permission::create($permiso);
+        return response()->json('se creo el permiso');*/
     }
 
     /**
@@ -36,27 +38,33 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:10|max:255|unique:permissions',
+        ]);
+        
+        $permiso=request(['name']);
+        Permission::create($permiso);
+        return response()->json('se creo el permiso');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Equipo  $equipo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipo $equipo)
+    public function show(Permission $permiso)
     {
-        //
+        return $permiso;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Equipo  $equipo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equipo $equipo)
+    public function edit($id)
     {
         //
     }
@@ -65,22 +73,26 @@ class EquipoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Equipo  $equipo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipo $equipo)
+    public function update(Request $request, Permission $permiso)
     {
-        //
+        $permiso-> name = request('name', "");
+        $permiso->save();
+        return response()->json('Permiso actualizado');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Equipo  $equipo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Permission $permiso)
     {
-        
+        $permiso->delete();
+         return response()->json('Se elimino el permiso');
+       //return $permiso;
     }
 }

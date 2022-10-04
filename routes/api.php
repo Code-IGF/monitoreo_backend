@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\EjemploController;
+use App\Http\Controllers\PermisosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,14 @@ Route::post('area/store',[AreaController::class, 'store']);
 Route::resource('areas',AreaController::class);
 Route::post('ejemplo',[EjemploController::class, 'store']);
 Route::resource('ejemplos', EjemploController::class);
+//permisos
+Route::get('usuarios/permisos', [PermisosController::class, 'index']);
+Route::get('usuarios/permisos/{permiso}', [PermisosController::class, 'show']);
+Route::post('usuarios/permisos',[PermisosController::class, 'store']);
+Route::delete('usuarios/permisos/{permiso}',[PermisosController::class, 'destroy']);
+Route::put('usuarios/permisos/{permiso}',[PermisosController::class, 'update']);
+//Route::resource('permisos', PermisosController::class);
+//
 Route::get('me2',[AuthController::class, 'me2']);
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

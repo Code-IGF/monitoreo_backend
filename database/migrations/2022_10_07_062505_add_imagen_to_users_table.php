@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Ejemplo extends Migration
+class AddImagenToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,8 @@ class Ejemplo extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('ejemplo', function(Blueprint $table)
-        {
-            $table->id();
-            $table->string('nombre', 80);
-            $table->string('descripcion')->nullable();
-            $table->integer('cantidad');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('imagen')->nullable();
         });
     }
 
@@ -31,6 +25,8 @@ class Ejemplo extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('imagen');
+        });
     }
 }

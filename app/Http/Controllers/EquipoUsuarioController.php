@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EquipoUsuario;
 use Illuminate\Http\Request;
 
-class ejemplo2 extends Controller
+class EquipoUsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,10 +41,10 @@ class ejemplo2 extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\EquipoUsuario  $equipoUsuario
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(EquipoUsuario $equipoUsuario)
     {
         //
     }
@@ -51,10 +52,10 @@ class ejemplo2 extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\EquipoUsuario  $equipoUsuario
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(EquipoUsuario $equipoUsuario)
     {
         //
     }
@@ -63,10 +64,10 @@ class ejemplo2 extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\EquipoUsuario  $equipoUsuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, EquipoUsuario $equipoUsuario)
     {
         //
     }
@@ -74,10 +75,10 @@ class ejemplo2 extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\EquipoUsuario  $equipoUsuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(EquipoUsuario $equipoUsuario)
     {
         //
     }

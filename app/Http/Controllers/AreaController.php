@@ -14,7 +14,18 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas=Area::paginate(10);
+        $areas=Area::all();
+        return response()->json($areas);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function paginacion()
+    {
+        $areas=Area::orderBy('id')->paginate(10);
         return response()->json($areas);
     }
 

@@ -15,7 +15,6 @@ class CreateEquiposTable extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre', 25);
             $table->string('descripcion', 100)->nullable();
             $table->foreignId('area_id')
@@ -28,6 +27,7 @@ class CreateEquiposTable extends Migration
                 ->constrained('users')
                 ->cascadeOnUpdate()
                 ->nullOnDelete();
+            $table->timestamps();
         });
     }
 

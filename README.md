@@ -27,3 +27,8 @@ php artisan make:model <nombreModelo> -m -c -r
 ```
 php artisan make:migrations add_<parametro>_to_<tabla>_table --table <tabla>
 ```
+
+*5. Ejecutar seed en producción*
+```
+php artisan db:seed --force
+```

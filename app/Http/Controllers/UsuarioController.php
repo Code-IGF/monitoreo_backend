@@ -16,7 +16,8 @@ class UsuarioController extends Controller
     {
        /*  $usuarios=User::all();
         return response()->json($usuarios); */
-        $usuarios=User::where('name', 'LIKE', '%'.'Prof'.'%')->get();//Like Query
+        //$usuarios=User::where('name', 'LIKE', '%'.'Prof'.'%')->get();//Like Query
+        $usuarios=User::where('name', 'Prof. Josiah Balistreri')->get();
         return response()->json($usuarios);
     }
 
@@ -40,6 +41,19 @@ class UsuarioController extends Controller
     public function show($id)
     {
         //
+    }
+
+        /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $file =$request->file('foto')->store('public/fotos');
+
+        return response()->json($file);
     }
 
     /**

@@ -38,9 +38,13 @@ Route::put('usuarios/permisos/{permiso}',[PermisosController::class, 'update']);
 //Route::resource('permisos', PermisosController::class);
 Route::get('usuarios', [UsuarioController::class, 'index']);
 Route::get('usuarios/paginacion', [UsuarioController::class, 'paginacion']);
+Route::post('usuarios', [UsuarioController::class, 'store']);
 //ControllerUsuarios (Para ver todos y para paginar)
 
 Route::get('me2',[AuthController::class, 'me2']);
+
+//Eliminar usuario
+Route::delete('user/delete/{user}', [AuthController::class, 'eliminar']);
 
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

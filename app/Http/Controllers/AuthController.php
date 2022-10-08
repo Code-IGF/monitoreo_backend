@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Storage;
+
+
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -34,20 +37,32 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
-    
-    public function register(Request $request)
+
+    public function register(Request  $request)
     {
-        //$credentials = request(['name','email', 'password']);
+        //Datos del usuario
+        $credentials = request(['name','email', 'password', 'fecha_nacimiento']);
+        $credentials['password']=bcrypt($credentials['password']);
+        //Imagen de Perfil
+        $file = $request->file('imagen')->store('public/fotos');
+        $urlFile=Storage::url($file);
+        $credentials['imagen']=$urlFile;
+        //Creando nuevo usuario
+        $user=User::create($credentials);
+        $user->assignRole(request(['rol']));
+        return response()->json($user);
+    }
 
-        //$credentials['password']=bcrypt($credentials['password']);
-        
-        //User::create($credentials);
-        //$file =$request->file()->store('fotos');
-
-        $credentials=request($request);
-
-        return response()->json($credentials);
-        //return response()->json($file);
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\User  $area
+     * @return \Illuminate\Http\Response
+     */
+    public function eliminar(User $user)
+    {
+        $user->delete();
+        return response()->json("success");
     }
 
     /**

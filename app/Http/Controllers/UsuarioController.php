@@ -14,7 +14,9 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios=User::all();
+       /*  $usuarios=User::all();
+        return response()->json($usuarios); */
+        $usuarios=User::where('name', 'LIKE', '%'.'Prof'.'%')->get();//Like Query
         return response()->json($usuarios);
     }
 

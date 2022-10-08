@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-
+use GuzzleHttp\Psr7\Request;
 
 class AuthController extends Controller
 {
@@ -35,14 +35,19 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
     
-    public function register()
+    public function register(Request $request)
     {
-        $credentials = request(['name','email', 'password']);
-        $credentials['password']=bcrypt($credentials['password']);
-        
-        User::create($credentials);
+        //$credentials = request(['name','email', 'password']);
 
-        return response()->json('success');
+        //$credentials['password']=bcrypt($credentials['password']);
+        
+        //User::create($credentials);
+        //$file =$request->file()->store('fotos');
+
+        $credentials=request($request);
+
+        return response()->json($credentials);
+        //return response()->json($file);
     }
 
     /**

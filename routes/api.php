@@ -7,7 +7,7 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\UsuarioController;
 
 use App\Http\Controllers\PermisosController;
-
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //         ('url', [controller, 'metodo'])
 Route::get('areas/paginacion', [AreaController::class, 'paginacion']);
 Route::resource('areas',AreaController::class);
+//Roles
+Route::resource('rol',RoleController::class);
 
 //permisos
 Route::get('usuarios/permisos', [PermisosController::class, 'index']);

@@ -17,7 +17,16 @@ class EquipoController extends Controller
     {
         //
     }
-
+    public function paginacion()
+    {
+        $areas=Equipo::orderBy('id')->paginate(10);
+        return response()->json($areas);
+    }
+    public function paginacionSupervisor()
+    {
+        $areas=Equipo::orderBy('id')->paginate(10);
+        return response()->json($areas);
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\UsuarioController;
 
 use App\Http\Controllers\PermisosController;
@@ -28,6 +29,9 @@ Route::get('areas/paginacion', [AreaController::class, 'paginacion']);
 Route::resource('areas',AreaController::class);
 //Roles
 Route::resource('rol',RoleController::class);
+
+//Equipos
+Route::get('equipos/paginate',[EquipoController::class, 'paginacion']);
 
 //permisos
 Route::get('usuarios/permisos', [PermisosController::class, 'index']);

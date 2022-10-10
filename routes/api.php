@@ -45,6 +45,8 @@ Route::get('me2',[AuthController::class, 'me2']);
 
 //Eliminar usuario
 Route::delete('user/delete/{user}', [AuthController::class, 'eliminar']);
+//editar Usuario (se ocupa post porque laravel no detecta el request de un FormData)
+Route::post('user/edit/{user}',[AuthController::class, 'update']);
 
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

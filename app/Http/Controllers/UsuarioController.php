@@ -28,7 +28,7 @@ class UsuarioController extends Controller
      */
     public function paginacion()
     {
-        $usuarios=User::orderBy('id')->paginate(10);
+        $usuarios=User::with('roles')->orderBy('id')->paginate(10);
         return response()->json($usuarios);
     }
 

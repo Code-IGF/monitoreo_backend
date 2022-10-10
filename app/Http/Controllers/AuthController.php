@@ -41,6 +41,17 @@ class AuthController extends Controller
 
     public function register(Request  $request)
     {
+        $validator = Validator::make($request->all(),
+        [
+            'name' => 'required',
+            'email'=> 'required',
+            'fecha_nacimiento'=> 'required',
+            'rol'=> 'required',
+        ]);
+        if($validator->fails())
+        {
+            return response()->json('completarInfo');
+        }
         //Datos del usuario
         $credentials = request(['name','email', 'password', 'fecha_nacimiento']);
         $credentials['password']=bcrypt($credentials['password']);

@@ -88,10 +88,38 @@ class AuthController extends Controller
         return response()->json(auth()->user());
     }
 
-    public function me2()
+    public function ActualizarPerfil(Request $request)
     {
-        $user = User::find(2);
-        return response()->json($user);
+        $validator = Validator::make($request->all(),
+        [
+            'name' => 'required',
+            'email'=> 'required',
+            'fecha_nacimiento'=> 'required',
+        ]);
+        if($validator->fails())
+        {
+            //Recuperando error
+            $error['type']="error";
+            $error['message'] = $validator->errors()->first();
+            return response()->json($error);
+        }
+        $user = auth()->user();
+        
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->fecha_nacimiento = $request['fecha_nacimiento'];
+        
+        //Si exite un archivo en el request
+        if($request->file()){
+            Storage::delete($user->image_path);
+            $file = $request->file('imagen')->store('public/fotos');
+            $user->image_path=$file;
+            $urlFile=Storage::url($file);
+            $user->imagen=$urlFile;
+        }
+        $user->save();
+        
+        return response()->json("success");
     }
 
     /**

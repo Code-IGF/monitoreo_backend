@@ -13,7 +13,7 @@ class Equipo extends Model
         'nombre',
         'descripcion',
         'area_id',
-        'supervisor'
+        'supervisor_id'
     ];
 
     public function area(){

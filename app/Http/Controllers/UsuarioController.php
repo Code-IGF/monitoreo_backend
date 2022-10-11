@@ -20,6 +20,14 @@ class UsuarioController extends Controller
         $usuarios=User::where('name', 'Prof. Josiah Balistreri')->get();
         return response()->json($usuarios);
     }
+    public function empleados()
+    {
+       /*  $usuarios=User::all();
+        return response()->json($usuarios); */
+        //$usuarios=User::where('name', 'LIKE', '%'.'Prof'.'%')->get();//Like Query
+        $users = User::role(3)->get(); 
+        return response()->json($users);
+    }
 
     /**
      * Display a listing of the resource.

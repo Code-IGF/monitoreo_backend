@@ -5,9 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Equipo;
 use Illuminate\Http\Request;
 use Spatie\Permission\Contracts\Permission;
+use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Contracts\Providers\Auth;
 
 class EquipoController extends Controller
 {
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('auth:api', ['except' => ['login','register','me2']]);
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +57,41 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supervisor=$request->user(); 
+        if($supervisor->hasRole('Supervisor')){
+            //Si el usuario tiene el rol de supervisor
+            $validator = Validator::make($request->all(),
+            [
+                'nombre' => 'required',
+                'descripcion' => 'required',
+                'area_id' => 'required',
+                'integrantes'=>'required'
+            ]);
+            if($validator->fails())
+            {
+                //Recuperando error
+                $error['type']="error";
+                $error['message'] = $validator->errors()->first();
+                return response()->json($error);
+            }
+            //Si todos los datos existen
+            $equipo = request(['nombre','descripcion', 'area_id']);
+            $equipo['supervisor_id']=$request->user()->id; 
+            $equipo=Equipo::create($equipo);
+            $integrantes=$request['integrantes'];
+
+            foreach ($integrantes as &$integrante) {
+                $integrante = $integrante['id'];
+            }
+
+            $equipo->usuarios()->sync($integrantes);
+            return $integrantes;
+        }
+        //Si no tiene el rol necesario genera un error 401
+        //En el frontend redirege al usuario al login
+        return response()->json("Verificar Usuario", 401);
+        
+        
     }
 
     /**

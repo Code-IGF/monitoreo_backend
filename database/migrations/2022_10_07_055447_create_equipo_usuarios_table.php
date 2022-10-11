@@ -15,12 +15,12 @@ class CreateEquipoUsuariosTable extends Migration
     {
         Schema::create('equipo_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_equipo')
+            $table->foreignId('equipo_id')
                 ->nullable()
                 ->constrained('equipos')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreignId('id_usuario')
+            $table->foreignId('user_id')
                 ->nullable()
                 ->constrained('users')
                 ->cascadeOnUpdate()

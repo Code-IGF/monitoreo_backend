@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipo;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Spatie\Permission\Contracts\Permission;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,8 @@ class EquipoController extends Controller
     public function __construct()
     {
         //$this->middleware('auth:api', ['except' => ['login','register','me2']]);
-        $this->middleware('auth:api');
+        $this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
+        //$this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
@@ -36,7 +38,7 @@ class EquipoController extends Controller
     }
     public function paginacionSupervisor()
     {
-        $areas=Equipo::orderBy('id')->paginate(10);
+        $areas=Equipo::with('area')->orderBy('id')->paginate(10);
         return response()->json($areas);
     }
     /**
@@ -100,9 +102,11 @@ class EquipoController extends Controller
      * @param  \App\Models\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipo $equipo)
+    public function show(Request $request, Equipo $equipo)
     {
-        //
+        $data['equipo']=$equipo;
+        $data['empleados']=$equipo->usuarios()->get();
+        return $data;
     }
 
     /**
@@ -125,7 +129,41 @@ class EquipoController extends Controller
      */
     public function update(Request $request, Equipo $equipo)
     {
-        //
+        //Si el usuario tiene el rol de supervisor
+        $validator = Validator::make($request->all(),
+        [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'area_id' => 'required',
+            'integrantes'=>'required'
+        ]);
+        if($validator->fails())
+        {
+            //Recuperando error
+            $error['type']="error";
+            $error['message'] = $validator->errors()->first();
+            return response()->json($error);
+        }
+
+        if($equipo['supervisor_id']== $request->user()->id){
+            //Actualizando
+            $equipo['nombre']=$request['nombre'];
+            $equipo['descripcion']=$request['descripcion'];
+            $equipo['area_id']=$request['area_id'];
+            $integrantes=$request['integrantes'];
+            foreach ($integrantes as &$integrante) {
+                $integrante = $integrante['id'];
+            }
+            $equipo->save();
+            $equipo->usuarios()->sync($integrantes);
+        }
+        else{
+            $error['type']="error";
+            $error['message'] = "Solo puede editar los equipos que supervisa.";
+            return response()->json($error);
+        }
+
+        return $equipo;
     }
 
     /**
@@ -134,8 +172,13 @@ class EquipoController extends Controller
      * @param  \App\Models\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Request $request, Equipo $equipo)
     {
-        
+        if($equipo['supervisor_id']== $request->user()->id){
+            $equipo->delete();
+            return Response()->json("success");
+        }
+        return Response()->json("Solo puede eliminar sus equipos");   
+
     }
 }

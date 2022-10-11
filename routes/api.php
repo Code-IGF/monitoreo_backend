@@ -31,7 +31,7 @@ Route::resource('areas',AreaController::class);
 Route::resource('rol',RoleController::class);
 
 //Equipos
-Route::get('equipos/paginate',[EquipoController::class, 'paginacion']);
+Route::get('equipos/paginate',[EquipoController::class, 'paginacionSupervisor']);
 Route::resource('equipos',EquipoController::class);
 
 //permisos

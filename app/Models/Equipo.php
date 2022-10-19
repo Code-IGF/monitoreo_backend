@@ -13,10 +13,13 @@ class Equipo extends Model
         'nombre',
         'descripcion',
         'area_id',
-        'supervisor'
+        'supervisor_id'
     ];
 
     public function area(){
-        return $this->belongsTo('App\Models\Area');
+        return $this->belongsTo(Area::class, 'area_id');
+    }
+    public function usuarios(){
+        return $this->belongsToMany(User::class, 'equipo_usuarios');
     }
 }

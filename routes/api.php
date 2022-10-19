@@ -4,7 +4,15 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+<<<<<<< HEAD
 use App\Http\Controllers\EjemploRa20073Controller;
+=======
+use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\UsuarioController;
+
+use App\Http\Controllers\PermisosController;
+use App\Http\Controllers\RoleController;
+>>>>>>> main
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +29,35 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //         ('url', [controller, 'metodo'])
-Route::post('area/store',[AreaController::class, 'store']);
+Route::get('areas/paginacion', [AreaController::class, 'paginacion']);
 Route::resource('areas',AreaController::class);
+//Roles
+Route::resource('rol',RoleController::class);
+
+//Equipos
+Route::get('equipos/paginate',[EquipoController::class, 'paginacionSupervisor']);
+Route::resource('equipos',EquipoController::class);
+
+//permisos
+Route::get('usuarios/permisos', [PermisosController::class, 'index']);
+Route::get('usuarios/permisos/{permiso}', [PermisosController::class, 'show']);
+Route::post('usuarios/permisos',[PermisosController::class, 'store']);
+Route::delete('usuarios/permisos/{permiso}',[PermisosController::class, 'destroy']);
+Route::put('usuarios/permisos/{permiso}',[PermisosController::class, 'update']);
+//Route::resource('permisos', PermisosController::class);
+Route::get('usuarios', [UsuarioController::class, 'index']);
+Route::get('usuarios/paginacion', [UsuarioController::class, 'paginacion']);
+Route::post('usuarios', [UsuarioController::class, 'store']);
+Route::get('usuarios/empleados', [UsuarioController::class, 'empleados']);
+//ControllerUsuarios (Para ver todos y para paginar)
+
+
+//Eliminar usuario
+Route::delete('user/delete/{user}', [AuthController::class, 'eliminar']);
+//editar Usuario (se ocupa post porque laravel no detecta el request de un FormData)
+Route::post('user/edit/{user}',[AuthController::class, 'update']);
+//Modificar Perfil
+Route::post('me/edit',[AuthController::class, 'ActualizarPerfil']);
 
 
 Route::post('ejemploRa20073',[EjemploRa20073Controller::class, 'store']);

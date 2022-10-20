@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Equipo extends Model
+class SalaTrabajo extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nombre',
-        'descripcion',
-        'area_id',
-        'supervisor'
+        'id_sala'
     ];
 
-    public function area(){
-        return $this->belongsTo('App\Models\Area');
+    public function equipos(){
+        return $this->hasOne('App\Models\Equipo');
     }
 
-    
 }

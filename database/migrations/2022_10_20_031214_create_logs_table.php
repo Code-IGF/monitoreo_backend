@@ -17,9 +17,9 @@ class CreateLogsTable extends Migration
             $table->id();
             $table->dataTime('fecha');
             $table->string('descripcion',100);
-            $table->foreignId('log_id')
+            $table->foreignId('user_id')
                 ->nullable()
-                ->constrained('logs')
+                ->constrained('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignId('archivo_id')

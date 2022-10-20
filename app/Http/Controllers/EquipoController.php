@@ -19,7 +19,7 @@ class EquipoController extends Controller
     public function __construct()
     {
         //$this->middleware('auth:api', ['except' => ['login','register','me2']]);
-        $this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
+        //$this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
         //$this->middleware('auth:api');
     }
     /**
@@ -38,7 +38,7 @@ class EquipoController extends Controller
     }
     public function paginacionSupervisor()
     {
-        $areas=Equipo::with('area')->orderBy('id')->paginate(10);
+        $areas=Equipo::with('usuarios')->orderBy('id')->paginate(10);
         return response()->json($areas);
     }
     /**

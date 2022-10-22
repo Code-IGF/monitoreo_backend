@@ -25,7 +25,7 @@ php artisan make:model <nombreModelo> -m -c -r
 
 *4. modificar migración*
 ```
-php artisan make:migrations add_<parametro>_to_<tabla>_table --table <tabla>
+php artisan make:migration add_<parametro>_to_<tabla>_table --table <tabla>
 ```
 
 *5. Ejecutar seed en producción*

@@ -7,6 +7,12 @@ use App\Models\User;
 
 class UsuarioController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware('auth:api', ['except' => ['login','register','me2']]);
+        //$this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
+        //$this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +22,17 @@ class UsuarioController extends Controller
     {
        /*  $usuarios=User::all();
         return response()->json($usuarios); */
-        $usuarios=User::where('name', 'LIKE', '%'.'Prof'.'%')->get();//Like Query
+        //$usuarios=User::where('name', 'LIKE', '%'.'Prof'.'%')->get();//Like Query
+        $usuarios=User::where('name', 'Prof. Josiah Balistreri')->get();
         return response()->json($usuarios);
+    }
+    public function empleados()
+    {
+       /*  $usuarios=User::all();
+        return response()->json($usuarios); */
+        //$usuarios=User::where('name', 'LIKE', '%'.'Prof'.'%')->get();//Like Query
+        $users = User::role(3)->get(); 
+        return response()->json($users);
     }
 
     /**
@@ -27,7 +42,7 @@ class UsuarioController extends Controller
      */
     public function paginacion()
     {
-        $usuarios=User::orderBy('id')->paginate(10);
+        $usuarios=User::with('roles')->orderBy('id')->paginate(10);
         return response()->json($usuarios);
     }
 
@@ -40,6 +55,19 @@ class UsuarioController extends Controller
     public function show($id)
     {
         //
+    }
+
+        /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $file =$request->file('foto')->store('public/fotos');
+
+        return response()->json($file);
     }
 
     /**

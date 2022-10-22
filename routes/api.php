@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\UsuarioController;
 
 use App\Http\Controllers\PermisosController;
@@ -29,6 +30,10 @@ Route::resource('areas',AreaController::class);
 //Roles
 Route::resource('rol',RoleController::class);
 
+//Equipos
+Route::get('equipos/paginate',[EquipoController::class, 'paginacionSupervisor']);
+Route::resource('equipos',EquipoController::class);
+
 //permisos
 Route::get('usuarios/permisos', [PermisosController::class, 'index']);
 Route::get('usuarios/permisos/{permiso}', [PermisosController::class, 'show']);
@@ -38,9 +43,17 @@ Route::put('usuarios/permisos/{permiso}',[PermisosController::class, 'update']);
 //Route::resource('permisos', PermisosController::class);
 Route::get('usuarios', [UsuarioController::class, 'index']);
 Route::get('usuarios/paginacion', [UsuarioController::class, 'paginacion']);
+Route::post('usuarios', [UsuarioController::class, 'store']);
+Route::get('usuarios/empleados', [UsuarioController::class, 'empleados']);
 //ControllerUsuarios (Para ver todos y para paginar)
 
-Route::get('me2',[AuthController::class, 'me2']);
+
+//Eliminar usuario
+Route::delete('user/delete/{user}', [AuthController::class, 'eliminar']);
+//editar Usuario (se ocupa post porque laravel no detecta el request de un FormData)
+Route::post('user/edit/{user}',[AuthController::class, 'update']);
+//Modificar Perfil
+Route::post('me/edit',[AuthController::class, 'ActualizarPerfil']);
 
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

@@ -20,5 +20,8 @@ class Equipo extends Model
         return $this->belongsTo('App\Models\Area');
     }
 
+    public function salaTrabajo(){
+        return $this->hasMany(SalaTrabajo::class, "id_sala");
+    }
     
 }

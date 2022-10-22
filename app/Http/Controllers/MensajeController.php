@@ -17,6 +17,13 @@ class MensajeController extends Controller
         //
     }
 
+    public function __construct()
+    {
+        //$this->middleware('auth:api', ['except' => ['login','register','me2']]);
+        //$this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
+        $this->middleware('auth:api');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

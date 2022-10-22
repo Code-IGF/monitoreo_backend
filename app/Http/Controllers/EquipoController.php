@@ -19,7 +19,7 @@ class EquipoController extends Controller
     public function __construct()
     {
         //$this->middleware('auth:api', ['except' => ['login','register','me2']]);
-        $this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
+        //$this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
         //$this->middleware('auth:api');
     }
     /**
@@ -38,9 +38,25 @@ class EquipoController extends Controller
     }
     public function paginacionSupervisor()
     {
-        $areas=Equipo::with('area')->orderBy('id')->paginate(10);
+        $areas=Equipo::with('usuarios')->orderBy('id')->paginate(10);
         return response()->json($areas);
     }
+
+    public function cantidaEquipos(){
+        /* $cantidad=User::count();  
+        return response()->json($cantidad); */
+        //$equpos=Equipo::where('id_area', '2')->conut()
+
+        $equipos=Equipo::with('usuarios')->get();
+        $datos=[];
+        foreach( $equipos as $equipo){
+            $datoEquipo['id']=$equipo['id'];
+            $datoEquipo['empleados']=count($equipo['usuarios']);
+            array_push($datos, $datoEquipo);
+        }
+        return response()->json($datos);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -41,6 +41,22 @@ class EquipoController extends Controller
         $areas=Equipo::with('usuarios')->orderBy('id')->paginate(10);
         return response()->json($areas);
     }
+
+    public function cantidaEquipos(){
+        /* $cantidad=User::count();  
+        return response()->json($cantidad); */
+        //$equpos=Equipo::where('id_area', '2')->conut()
+
+        $equipos=Equipo::with('usuarios')->get();
+        $datos=[];
+        foreach( $equipos as $equipo){
+            $datoEquipo['id']=$equipo['id'];
+            $datoEquipo['empleados']=count($equipo['usuarios']);
+            array_push($datos, $datoEquipo);
+        }
+        return response()->json($datos);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

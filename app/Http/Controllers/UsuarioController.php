@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipo;
+use App\Models\EquipoUsuario;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -11,7 +13,7 @@ class UsuarioController extends Controller
     {
         //$this->middleware('auth:api', ['except' => ['login','register','me2']]);
         //$this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
-        //$this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
@@ -33,6 +35,24 @@ class UsuarioController extends Controller
         //$usuarios=User::where('name', 'LIKE', '%'.'Prof'.'%')->get();//Like Query
         $users = User::role(3)->get(); 
         return response()->json($users);
+    }
+
+    public function miEquipo(){
+        $usuario=auth()->user();
+        $idUsuario=$usuario['id'];
+        
+        /*
+        $equipos=EquipoUsuario::where('user_id', $idUsuario)->get();
+        $equiposDatos=[];
+        foreach ($equipos as $equipo) {
+            $nuevoEquipo=Equipo::with('usuarios')->find($equipo['equipo_id']);
+            array_push($equiposDatos, $nuevoEquipo);
+          }
+        */
+        $usuarioConEquipo=User::with('equipo')->find($usuario['id']); 
+        
+        
+        return response()->json($usuarioConEquipo);;
     }
 
     /**

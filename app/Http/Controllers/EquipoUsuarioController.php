@@ -82,4 +82,6 @@ class EquipoUsuarioController extends Controller
     {
         //
     }
+
+    // hi
 }

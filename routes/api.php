@@ -32,6 +32,7 @@ Route::resource('rol',RoleController::class);
 
 //Equipos
 Route::get('equipos/paginate',[EquipoController::class, 'paginacionSupervisor']);
+Route::get('equipos/Area', [EquipoController::class, 'consultarEqupoXArea']);
 Route::get('equipos/cantidad', [EquipoController::class, 'cantidaEquipos']);
 Route::resource('equipos',EquipoController::class);
 
@@ -46,6 +47,9 @@ Route::get('usuarios', [UsuarioController::class, 'index']);
 Route::get('usuarios/paginacion', [UsuarioController::class, 'paginacion']);
 Route::post('usuarios', [UsuarioController::class, 'store']);
 Route::get('usuarios/empleados', [UsuarioController::class, 'empleados']);
+//  para conocer la cantidad de usuarios 
+Route::get('usuarios/User',[UsuarioController::class, 'cantidadUsuario']);
+
 //ControllerUsuarios (Para ver todos y para paginar)
 
 Route::get('usuario/miEquipo',[UsuarioController::class, 'miEquipo']);

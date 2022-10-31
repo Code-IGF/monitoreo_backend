@@ -89,6 +89,13 @@ class UsuarioController extends Controller
 
         return response()->json($file);
     }
+    // funcion para conocer la cantidad de usuarios 
+    public function cantidadUsuario(){
+        $cantidadUs=User::count();  
+        return response()->json($cantidadUs);
+        
+        }
+       
 
     /**
      * Remove the specified resource from storage.

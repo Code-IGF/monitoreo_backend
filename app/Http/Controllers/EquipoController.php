@@ -46,8 +46,8 @@ class EquipoController extends Controller
         
 
         // funcion para conocer los equipos por medio de area_id
-    public function consultarEqupoXArea () {
-        $equiposA =Equipo::where('id', '1')->count();
+    public function consultarEqupoXArea ($id_area) {
+        $equiposA =Equipo::where('area_id', $id_area)->count();
         return response()->json($equiposA);
 
     }

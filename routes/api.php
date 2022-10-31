@@ -32,7 +32,7 @@ Route::resource('rol',RoleController::class);
 
 //Equipos
 Route::get('equipos/paginate',[EquipoController::class, 'paginacionSupervisor']);
-Route::get('equipos/Area', [EquipoController::class, 'consultarEqupoXArea']);
+Route::get('equipos/Area/{id_area}', [EquipoController::class, 'consultarEqupoXArea']);
 Route::get('equipos/cantidad', [EquipoController::class, 'cantidaEquipos']);
 Route::resource('equipos',EquipoController::class);
 

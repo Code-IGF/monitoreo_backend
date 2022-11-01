@@ -18,10 +18,6 @@ class CreateArchivosTable extends Migration
             $table->string('url');
             $table->integer('tipo');
             $table->string('nombre',100);
-            $table->foreingId('log_id')
-                ->nullable()
-                ->constrained('logs')
-                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

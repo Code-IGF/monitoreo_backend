@@ -74,7 +74,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $user=User::with('roles')->find($id);
+        return $user;
     }
 
         /**

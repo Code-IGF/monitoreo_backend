@@ -44,6 +44,7 @@ Route::delete('usuarios/permisos/{permiso}',[PermisosController::class, 'destroy
 Route::put('usuarios/permisos/{permiso}',[PermisosController::class, 'update']);
 //Route::resource('permisos', PermisosController::class);
 Route::get('usuarios', [UsuarioController::class, 'index']);
+Route::get('usuarios/{id}', [UsuarioController::class, 'show']);
 Route::get('usuarios/paginacion', [UsuarioController::class, 'paginacion']);
 Route::post('usuarios', [UsuarioController::class, 'store']);
 Route::get('usuarios/empleados', [UsuarioController::class, 'empleados']);

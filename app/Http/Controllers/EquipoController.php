@@ -38,7 +38,7 @@ class EquipoController extends Controller
     }
     public function paginacionSupervisor()
     {
-        $areas=Equipo::with('usuarios')->orderBy('id')->paginate(10);
+        $areas=Equipo::with('usuarios', 'area')->orderBy('id')->paginate(10);
         return response()->json($areas);
     }
 

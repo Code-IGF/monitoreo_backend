@@ -9,6 +9,7 @@ use App\Http\Controllers\UsuarioController;
 
 use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\RoleController;
+use App\Events\NewMessage;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +70,10 @@ Route::group(['middleware'=>'api'], function () {
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
 
+});
+
+//Ruta para socket de prueba
+Route::post('new-message', function (Request $request) {
+    event(new NewMessage($request->message));
+    return 'ok';
 });

@@ -39,7 +39,7 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => false,
                 'encrypted' => false,
-                'host' => 'code-rm.tk',
+                'host' => env('PUSHER_HOST'),
                 'port' => 6001,
                 'scheme' => env('BROADCAST_SCHEME'),
             ],

@@ -103,7 +103,7 @@ class AuthController extends Controller
             $error['message'] = $validator->errors()->first();
             return response()->json($error);
         }
-        $user = auth()->user();
+        $user = auth()->user();//Información del usuario
         
         $user->name = $request['name'];
         $user->email = $request['email'];

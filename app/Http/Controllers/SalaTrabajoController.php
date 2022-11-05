@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EquipoUsuario;
+use App\Models\SalaTrabajo;
 use Illuminate\Http\Request;
 
-class EquipoUsuarioController extends Controller
+class SalaTrabajoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class EquipoUsuarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\EquipoUsuario  $equipoUsuario
+     * @param  \App\Models\SalaTrabajo  $salaTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function show(EquipoUsuario $equipoUsuario)
+    public function show(SalaTrabajo $salaTrabajo)
     {
         //
     }
@@ -52,10 +52,10 @@ class EquipoUsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\EquipoUsuario  $equipoUsuario
+     * @param  \App\Models\SalaTrabajo  $salaTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function edit(EquipoUsuario $equipoUsuario)
+    public function edit(SalaTrabajo $salaTrabajo)
     {
         //
     }
@@ -64,10 +64,10 @@ class EquipoUsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EquipoUsuario  $equipoUsuario
+     * @param  \App\Models\SalaTrabajo  $salaTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EquipoUsuario $equipoUsuario)
+    public function update(Request $request, SalaTrabajo $salaTrabajo)
     {
         //
     }
@@ -75,13 +75,11 @@ class EquipoUsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EquipoUsuario  $equipoUsuario
+     * @param  \App\Models\SalaTrabajo  $salaTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EquipoUsuario $equipoUsuario)
+    public function destroy(SalaTrabajo $salaTrabajo)
     {
         //
     }
-
-    // hi
 }

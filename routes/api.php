@@ -10,6 +10,7 @@ use App\Http\Controllers\UsuarioController;
 
 use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\RoleController;
+use App\Events\NewMessage;
 
 
 /*
@@ -34,6 +35,8 @@ Route::resource('rol',RoleController::class);
 
 //Equipos
 Route::get('equipos/paginate',[EquipoController::class, 'paginacionSupervisor']);
+Route::get('equipos/Area/{id_area}', [EquipoController::class, 'consultarEqupoXArea']);
+Route::get('equipos/cantidad', [EquipoController::class, 'cantidaEquipos']);
 Route::resource('equipos',EquipoController::class);
 
 //permisos
@@ -44,11 +47,16 @@ Route::delete('usuarios/permisos/{permiso}',[PermisosController::class, 'destroy
 Route::put('usuarios/permisos/{permiso}',[PermisosController::class, 'update']);
 //Route::resource('permisos', PermisosController::class);
 Route::get('usuarios', [UsuarioController::class, 'index']);
+Route::get('usuarios/{id}', [UsuarioController::class, 'show']);
 Route::get('usuarios/paginacion', [UsuarioController::class, 'paginacion']);
 Route::post('usuarios', [UsuarioController::class, 'store']);
 Route::get('usuarios/empleados', [UsuarioController::class, 'empleados']);
+//  para conocer la cantidad de usuarios 
+Route::get('usuarios/User',[UsuarioController::class, 'cantidadUsuario']);
+
 //ControllerUsuarios (Para ver todos y para paginar)
 
+Route::get('usuario/miEquipo',[UsuarioController::class, 'miEquipo']);
 
 //Eliminar usuario
 Route::delete('user/delete/{user}', [AuthController::class, 'eliminar']);
@@ -70,4 +78,10 @@ Route::group(['middleware'=>'api'], function () {
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
 
+});
+
+//Ruta para socket de prueba
+Route::post('new-message', function (Request $request) {
+    event(new NewMessage($request->message));
+    return 'ok';
 });

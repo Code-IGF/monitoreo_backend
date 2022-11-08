@@ -49,10 +49,14 @@ class UsuarioController extends Controller
             array_push($equiposDatos, $nuevoEquipo);
           }
         */
-        $usuarioConEquipo=User::with('equipo')->find($usuario['id']); 
-        
-        
-        return response()->json($usuarioConEquipo);;
+        $rol=$usuario->getRoleNames()[0];
+        if($rol=="Supervisor"){
+            $data=Equipo::with('usuarios')->where('supervisor_id', $idUsuario)->get();
+        }
+        else{
+            $data=User::with('equipo')->find(14);
+        }
+        return response()->json($data);
     }
 
     /**

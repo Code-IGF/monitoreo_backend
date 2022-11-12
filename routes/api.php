@@ -46,8 +46,9 @@ Route::put('usuarios/permisos/{permiso}',[PermisosController::class, 'update']);
 //Route::resource('permisos', PermisosController::class);
 Route::get('usuarios/empleados', [UsuarioController::class, 'empleados']);
 Route::get('usuarios', [UsuarioController::class, 'index']);
-Route::get('usuarios/{id}', [UsuarioController::class, 'show']);
 Route::get('usuarios/paginacion', [UsuarioController::class, 'paginacion']);
+Route::get('usuarios/{id}', [UsuarioController::class, 'show']);
+
 Route::post('usuarios', [UsuarioController::class, 'store']);
 //  para conocer la cantidad de usuarios 
 Route::get('usuarios/User',[UsuarioController::class, 'cantidadUsuario']);

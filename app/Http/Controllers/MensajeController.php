@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Archivo;
+use App\Models\Mensaje;
 use Illuminate\Http\Request;
 
-class ArchivoController extends Controller
+class MensajeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,13 @@ class ArchivoController extends Controller
     public function index()
     {
         //
+    }
+
+    public function __construct()
+    {
+        //$this->middleware('auth:api', ['except' => ['login','register','me2']]);
+        //$this->middleware('auth:api', ['except' => ['paginacionSupervisor']]);
+        $this->middleware('auth:api');
     }
 
     /**
@@ -41,10 +48,10 @@ class ArchivoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
-    public function show(Archivo $archivo)
+    public function show(Mensaje $mensaje)
     {
         //
     }
@@ -52,10 +59,10 @@ class ArchivoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
-    public function edit(Archivo $archivo)
+    public function edit(Mensaje $mensaje)
     {
         //
     }
@@ -64,10 +71,10 @@ class ArchivoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Archivo $archivo)
+    public function update(Request $request, Mensaje $mensaje)
     {
         //
     }
@@ -75,15 +82,11 @@ class ArchivoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Archivo $archivo)
+    public function destroy(Mensaje $mensaje)
     {
         //
     }
-
-
-
-    //
 }

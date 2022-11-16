@@ -93,7 +93,8 @@ class AreaController extends Controller
         return response()->json($area);
         //return response()->json($request->all());
     }
-
+   
+           
     /**
      * Remove the specified resource from storage.
      *
@@ -105,4 +106,5 @@ class AreaController extends Controller
         $area->delete();
         return response()->json("success");
     }
+
 }

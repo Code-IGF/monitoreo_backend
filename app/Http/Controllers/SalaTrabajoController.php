@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Archivo;
+use App\Models\SalaTrabajo;
 use Illuminate\Http\Request;
 
-class ArchivoController extends Controller
+class SalaTrabajoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ArchivoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\SalaTrabajo  $salaTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function show(Archivo $archivo)
+    public function show(SalaTrabajo $salaTrabajo)
     {
         //
     }
@@ -52,10 +52,10 @@ class ArchivoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\SalaTrabajo  $salaTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Archivo $archivo)
+    public function edit(SalaTrabajo $salaTrabajo)
     {
         //
     }
@@ -64,10 +64,10 @@ class ArchivoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\SalaTrabajo  $salaTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Archivo $archivo)
+    public function update(Request $request, SalaTrabajo $salaTrabajo)
     {
         //
     }
@@ -75,15 +75,11 @@ class ArchivoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\SalaTrabajo  $salaTrabajo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Archivo $archivo)
+    public function destroy(SalaTrabajo $salaTrabajo)
     {
         //
     }
-
-
-
-    //
 }

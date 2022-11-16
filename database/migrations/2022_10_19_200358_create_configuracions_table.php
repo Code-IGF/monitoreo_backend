@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArchivosTable extends Migration
+class CreateConfiguracionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateArchivosTable extends Migration
      */
     public function up()
     {
-        Schema::create('archivos', function (Blueprint $table) {
+        Schema::create('configuracion', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->integer('tipo');
-            $table->string('nombre',100);
-            $table->foreingId('log_id')
-                ->nullable()
-                ->constrained('logs')
-                ->cascadeOnUpdate();
+            $table->time('hora_entrada');
+            $table->time('hora_salida');
+            $table->time('intervalo_conexion');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateArchivosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('archivos');
+        Schema::dropIfExists('configuracion');
     }
 }

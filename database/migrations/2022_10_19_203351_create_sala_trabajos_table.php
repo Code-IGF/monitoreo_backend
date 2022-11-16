@@ -14,7 +14,7 @@ class CreateSalaTrabajosTable extends Migration
     public function up()
     {
         Schema::create('sala_trabajo', function (Blueprint $table) {
-            $table->id('id_sala');   
+            $table->id();   
             $table->foreignId('configuracion_id')
                 ->nullable()
                 ->constrained('configuracion')

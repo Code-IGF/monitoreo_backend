@@ -11,16 +11,16 @@ class Mensaje extends Model
 
     protected $fillable=[
         'texto',
-        'sala_id',
-        'usuario_id'
+        'sala_trabajo_id',
+        'user_id'
         
     ];
     public function sala(){
-        return $this->belongsTo(Sala::class,'sala_id');
+        return $this->belongsTo(Sala::class,'sala_trabajo_id');
     }
 
     public function usuario(){
-        return $this->belongsTo(User::class, 'usuario_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
    
 }

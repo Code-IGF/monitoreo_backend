@@ -12,6 +12,7 @@ use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\RoleController;
 use App\Events\NewMessage;
 
+use App\Http\Controllers\MensajeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,13 @@ Route::group(['middleware'=>'api'], function () {
     Route::post('me', [AuthController::class,'me']);
 
 });
+//ruta para los mensajes
+Route::get('mensajes',[MensajeController::class, 'paginacion']);
+Route::post('mensajes',[MensajeController::class, 'store']);
+Route::get('mensajes/{mensaje}',[MensajeController::class, 'show']);
+Route::delete('mensajes/{mensaje}',[MensajeController::class, 'destroy']);
+
+
 
 //Ruta para socket de prueba
 Route::post('new-message', function (Request $request) {

@@ -66,4 +66,9 @@ class User extends Authenticatable implements JWTSubject
     public function equipo(){
         return $this->belongsToMany(Equipo::class, 'equipo_usuarios');
     }
+
+    //Sala Trabajo
+    public function sala_trabajo(){
+        return $this->belongsToMany(sala_trabajo::class, 'mensaje');
+    }
 }

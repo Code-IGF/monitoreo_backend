@@ -13,8 +13,22 @@ class CreateMensajesTable extends Migration
      */
     public function up()
     {
+
         Schema::create('mensajes', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_chat');
+            
+            $table->string('texto',100);
+            $table->foreign("sala_trabajo")
+                    ->references("id_sala")
+                    ->on("sala_trabajo")
+                    ->onDelete("cascade")
+                    ->onUpdate("cascade");
+
+            $table->foreignId('user_id')
+                    ->nullable()
+                    ->constrained('users')
+                    ->cascadeOnUpdate()
+                    ->cascadeOnDelete();
             $table->timestamps();
         });
     }

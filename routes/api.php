@@ -4,12 +4,14 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\UsuarioController;
 
 use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\RoleController;
 use App\Events\NewMessage;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +65,12 @@ Route::delete('user/delete/{user}', [AuthController::class, 'eliminar']);
 Route::post('user/edit/{user}',[AuthController::class, 'update']);
 //Modificar Perfil
 Route::post('me/edit',[AuthController::class, 'ActualizarPerfil']);
+
+
+Route::post('ejemploRa20073',[EjemploRa20073Controller::class, 'store']);
+Route::resource('ejemploRa20073',EjemploRa20073Controller::class);
+
+
 
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

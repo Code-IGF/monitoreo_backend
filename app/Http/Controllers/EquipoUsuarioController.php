@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipo;
+use App\Models\EquipoUsuario;
 use Illuminate\Http\Request;
-use Spatie\Permission\Contracts\Permission;
 
-class EquipoController extends Controller
+class EquipoUsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +24,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class EquipoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Equipo  $equipo
+     * @param  \App\Models\EquipoUsuario  $equipoUsuario
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipo $equipo)
+    public function show(EquipoUsuario $equipoUsuario)
     {
         //
     }
@@ -53,10 +52,10 @@ class EquipoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Equipo  $equipo
+     * @param  \App\Models\EquipoUsuario  $equipoUsuario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equipo $equipo)
+    public function edit(EquipoUsuario $equipoUsuario)
     {
         //
     }
@@ -65,10 +64,10 @@ class EquipoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Equipo  $equipo
+     * @param  \App\Models\EquipoUsuario  $equipoUsuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipo $equipo)
+    public function update(Request $request, EquipoUsuario $equipoUsuario)
     {
         //
     }
@@ -76,11 +75,11 @@ class EquipoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Equipo  $equipo
+     * @param  \App\Models\EquipoUsuario  $equipoUsuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(EquipoUsuario $equipoUsuario)
     {
-        
+        //
     }
 }

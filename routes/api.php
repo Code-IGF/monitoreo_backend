@@ -4,6 +4,10 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\UsuarioController;
+
+use App\Http\Controllers\PermisosController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +24,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //         ('url', [controller, 'metodo'])
-Route::post('area/store',[AreaController::class, 'store']);
+Route::get('areas/paginacion', [AreaController::class, 'paginacion']);
 Route::resource('areas',AreaController::class);
+//Roles
+Route::resource('rol',RoleController::class);
+
+//permisos
+Route::get('usuarios/permisos', [PermisosController::class, 'index']);
+Route::get('usuarios/permisos/{permiso}', [PermisosController::class, 'show']);
+Route::post('usuarios/permisos',[PermisosController::class, 'store']);
+Route::delete('usuarios/permisos/{permiso}',[PermisosController::class, 'destroy']);
+Route::put('usuarios/permisos/{permiso}',[PermisosController::class, 'update']);
+//Route::resource('permisos', PermisosController::class);
+Route::get('usuarios', [UsuarioController::class, 'index']);
+Route::get('usuarios/paginacion', [UsuarioController::class, 'paginacion']);
+//ControllerUsuarios (Para ver todos y para paginar)
+
+Route::get('me2',[AuthController::class, 'me2']);
 
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

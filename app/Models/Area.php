@@ -15,6 +15,6 @@ class Area extends Model
     ];
 
     public function equipos(){
-        return $this->hasMany('App\Models\Equipo');
+        return $this->hasMany(Equipo::class, 'id');
     }
 }

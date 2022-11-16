@@ -17,3 +17,18 @@ composer install --ignore-platform-reqs
 ```
 php artisan serve
 ```
+
+*3. crear modelo, migracion y controller *
+```
+php artisan make:model <nombreModelo> -m -c -r
+```
+
+*4. modificar migración*
+```
+php artisan make:migrations add_<parametro>_to_<tabla>_table --table <tabla>
+```
+
+*5. Ejecutar seed en producción*
+```
+php artisan db:seed --force
+```

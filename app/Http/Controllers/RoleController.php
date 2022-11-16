@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class AreaController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,19 +14,8 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas=Area::all();
-        return response()->json($areas);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function paginacion()
-    {
-        $areas=Area::orderBy('id')->paginate(10);
-        return response()->json($areas);
+        $roles=Role::all();
+        return response()->json($roles);
     }
 
     /**
@@ -47,31 +36,27 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        $area = request(['nombre','descripcion']);
-        $area=Area::create($area);
-
-        return response()->json($area);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Area  $area
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $area=Area::findOrFail($id);
-        return response()->json($area);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Area  $area
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Area $area)
+    public function edit($id)
     {
         //
     }
@@ -80,29 +65,22 @@ class AreaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Area  $area
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Area $area)
+    public function update(Request $request, $id)
     {
-
-        $area->nombre=$request->nombre;
-        $area->descripcion=$request->descripcion;
-        $area->save();
-        //Area::updateOrCreate($area);
-        return response()->json($area);
-        //return response()->json($request->all());
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Area  $area
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Area $area)
+    public function destroy($id)
     {
-        $area->delete();
-        return response()->json("success");
+        //
     }
 }

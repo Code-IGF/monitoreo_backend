@@ -17,4 +17,11 @@ class SalaTrabajo extends Model
         return $this->hasOne('App\Models\Equipo');
     }
 
+    public function configuracion(){
+        return $this->belongsTo(Configuracion::class, 'configuracion_id');
+    }
+
+    public function equipo(){
+        return $this->belongsTo(Equipo::class, 'equipo_id');
+    }
 }

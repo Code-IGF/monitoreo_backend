@@ -13,7 +13,7 @@ class CreateConfiguracionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('configuracion', function (Blueprint $table) {
+        Schema::create('configuracions', function (Blueprint $table) {
             $table->id('id_configuracion');
             $table->time('hora_entrada');
             $table->time('hora_salida');

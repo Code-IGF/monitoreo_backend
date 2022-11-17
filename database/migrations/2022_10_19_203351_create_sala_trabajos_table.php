@@ -15,8 +15,7 @@ class CreateSalaTrabajosTable extends Migration
     {
         Schema::create('sala_trabajo', function (Blueprint $table) {
             $table->id('id_sala');
-            
-            $table->foreign("configuracion")
+            $table->foreignId("configuracions")
                     ->references("id_configuracion")
                     ->on("configuracion")
                     ->onDelete("cascade")

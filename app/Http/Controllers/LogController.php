@@ -38,7 +38,19 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+                
+                'descripcion' => 'required',
+                
+            ]);
+            if($validator->fails())
+            {
+                //Recuperando error
+                $error['type']="error";
+                $error['message'] = $validator->errors()->first();
+                return response()->json($error);
+            }
         $user = auth()->user()->id;
         $log = request([
             'descripcion',
@@ -53,9 +65,9 @@ class LogController extends Controller
                             'nombre' => 'nombre',];
             $archivo = Archivo::create($archivo);
             $log['archivo_id'] = $archivo['archivo_id'];
-        }
+        }*/
         $log = Log::create($log);
- */ 
+  
         return response()->json($log);
      
 

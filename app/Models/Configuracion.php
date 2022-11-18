@@ -15,4 +15,8 @@ class Configuracion extends Model
         'hora_salida',
         'intervalo_conexion'
     ];
+
+    public function salaTrabajo(){
+        return $this->hasMany(SalaTrabajo::class, "id_sala");
+    }
 }

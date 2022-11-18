@@ -15,11 +15,22 @@ class CreateSalaTrabajosTable extends Migration
     {
         Schema::create('sala_trabajo', function (Blueprint $table) {
             $table->id('id_sala');
+<<<<<<< HEAD
             $table->foreignId("configuracions")
                     ->references("id_configuracion")
                     ->on("configuracion")
                     ->onDelete("cascade")
                     ->onUpdate("cascade");
+=======
+            $table->foreignId("configuracion_id")
+                    ->constrained("configuracions")
+                    ->cascadeOnUpdate()
+                    ->nullOnDelete();
+            $table->foreignId("equipo_id")
+                ->constrained("equipos")
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+>>>>>>> 69c723c1c9e8e56cc3aa41791cdd379d9d230f22
             $table->timestamps();
         });
     }

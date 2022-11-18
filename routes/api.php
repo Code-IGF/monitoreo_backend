@@ -13,6 +13,7 @@ use App\Http\Controllers\RoleController;
 use App\Events\NewMessage;
 
 use App\Http\Controllers\MensajeController;
+use App\Http\Controllers\LogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,3 +95,6 @@ Route::post('new-message', function (Request $request) {
     event(new NewMessage($request->message));
     return 'ok';
 });
+
+//Funciones del controlador log
+Route::post('log',[LogController::class, 'store']);

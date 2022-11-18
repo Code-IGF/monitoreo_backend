@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Archivo;
 
 class LogController extends Controller
 {
@@ -36,6 +39,27 @@ class LogController extends Controller
     public function store(Request $request)
     {
         //
+        $user = auth()->user()->id;
+        $log = request([
+            'descripcion',
+            'user_id',
+            ]);
+        $log['user_id'] = $user;
+ /*       if($request->file()){
+            $file = $request->file('imagen')->store('public/log');
+            $urlFile = Storage::url($file);
+            $archivo = [       'url'=> $urlFile,
+                            'tipo' => 'png',
+                            'nombre' => 'nombre',];
+            $archivo = Archivo::create($archivo);
+            $log['archivo_id'] = $archivo['archivo_id'];
+        }
+        $log = Log::create($log);
+ */ 
+        return response()->json($log);
+     
+
+
     }
 
     /**

@@ -10,13 +10,14 @@ class Log extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fecha',
+        
         'descripcion',
-        'usuario_id'
+        'user_id',
+        'archivo_id'
     ];
 
     public function usuario(){
-        return $this->belongsTo(User::class, 'usuario_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function archivo(){

@@ -21,7 +21,7 @@ class CreateMensajesTable extends Migration
 
             $table->foreignId("sala_trabajo_id")
                 ->nullable()
-                ->constrained('sala_trabajo')
+                ->constrained('sala_trabajos')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignId('user_id')

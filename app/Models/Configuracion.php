@@ -10,7 +10,7 @@ class Configuracion extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_configuracion',
+        'id',
         'hora_entrada',
         'hora_salida',
         'intervalo_conexion'

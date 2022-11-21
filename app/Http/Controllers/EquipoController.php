@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Configuracion;
 use App\Models\Equipo;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Spatie\Permission\Contracts\Permission;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
+use App\Models\SalaTrabajo;
 
 class EquipoController extends Controller
 {
@@ -106,6 +108,15 @@ class EquipoController extends Controller
             $equipo['supervisor_id']=$request->user()->id; 
             $equipo=Equipo::create($equipo);
             $integrantes=$request['integrantes'];
+            //Creando configuracion
+            $configuracion["hora_entrada"]="08:00:00";
+            $configuracion["hora_salida"]="16:00:00";
+            $configuracion["intervalo_conexion"]="08:05:00";
+            $configuracion=Configuracion::create($configuracion);
+            //creando sala de trabajo
+            $sala["configuracion_id"]=$configuracion["id"];
+            $sala["equipos_id"]=$equipo["id"];
+            $sala=SalaTrabajo::create($sala);
 
             foreach ($integrantes as &$integrante) {
                 $integrante = $integrante['id'];

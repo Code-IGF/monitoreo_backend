@@ -13,11 +13,16 @@ class CreateSalaTrabajosTable extends Migration
      */
     public function up()
     {
-        Schema::create('sala_trabajo', function (Blueprint $table) {
+        Schema::create('sala_trabajos', function (Blueprint $table) {
             $table->id();   
             $table->foreignId('configuracion_id')
                 ->nullable()
-                ->constrained('configuracion')
+                ->constrained('configuracions')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('equipos_id')
+                ->nullable()
+                ->constrained('equipos')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->timestamps();

@@ -10,11 +10,17 @@ class SalaTrabajo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_sala'
+        'id_sala',
+        'configuracion_id',
+        'equipos_id'
     ];
 
     public function equipos(){
-        return $this->hasOne('App\Models\Equipo');
+        return $this->belongsTo(Equipo::class, "equipos_id");
+    }
+
+    public function configuracion(){
+        return $this->belongsTo(Configuracion::class, "configuracion_id");
     }
 
 }

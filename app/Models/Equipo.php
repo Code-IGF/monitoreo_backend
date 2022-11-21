@@ -22,6 +22,9 @@ class Equipo extends Model
     public function usuarios(){
         return $this->belongsToMany(User::class, 'equipo_usuarios');
     }
+    public function salaTrabajo(){
+        return $this->hasOne(SalaTrabajo::class, 'equipos_id');
+    }
 
     
 }

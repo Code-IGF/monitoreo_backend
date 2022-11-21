@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Configuracion;
 use App\Models\Equipo;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
@@ -109,12 +108,9 @@ class EquipoController extends Controller
             $equipo=Equipo::create($equipo);
             $integrantes=$request['integrantes'];
             //Creando configuracion
-            $configuracion["hora_entrada"]="08:00:00";
-            $configuracion["hora_salida"]="16:00:00";
-            $configuracion["intervalo_conexion"]="08:05:00";
-            $configuracion=Configuracion::create($configuracion);
-            //creando sala de trabajo
-            $sala["configuracion_id"]=$configuracion["id"];
+            $sala["hora_entrada"]="08:00:00";
+            $sala["hora_salida"]="16:00:00";
+            $sala["intervalo_conexion"]="00:05:00";
             $sala["equipos_id"]=$equipo["id"];
             $sala=SalaTrabajo::create($sala);
 

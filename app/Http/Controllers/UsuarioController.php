@@ -51,10 +51,10 @@ class UsuarioController extends Controller
         */
         $rol=$usuario->getRoleNames()[0];
         if($rol=="Supervisor"){
-            $data=Equipo::with('usuarios')->where('supervisor_id', $idUsuario)->get();
+            $data=Equipo::with('usuarios','salaTrabajo')->where('supervisor_id', $idUsuario)->get();
         }
         else{
-            $data=User::with('equipo')->find(14);
+            $data=User::with('equipo.salaTrabajo')->find(14);
         }
         return response()->json($data);
     }

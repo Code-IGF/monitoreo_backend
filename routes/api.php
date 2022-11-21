@@ -14,6 +14,7 @@ use App\Events\NewMessage;
 
 use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\SalaTrabajoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,7 +89,7 @@ Route::post('mensajes',[MensajeController::class, 'store']);
 Route::get('mensajes/{mensaje}',[MensajeController::class, 'show']);
 Route::delete('mensajes/{mensaje}',[MensajeController::class, 'destroy']);
 
-
+Route::post("sala/{salaTrabajo}",[SalaTrabajoController::class, "update"]);
 
 //Ruta para socket de prueba
 Route::post('new-message', function (Request $request) {

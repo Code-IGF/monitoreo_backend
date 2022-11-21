@@ -11,7 +11,9 @@ class SalaTrabajo extends Model
 
     protected $fillable = [
         'id_sala',
-        'configuracion_id',
+        'hora_entrada',
+        'hora_salida',
+        'intervalo_conexion',
         'equipos_id'
     ];
 
@@ -19,8 +21,5 @@ class SalaTrabajo extends Model
         return $this->belongsTo(Equipo::class, "equipos_id");
     }
 
-    public function configuracion(){
-        return $this->belongsTo(Configuracion::class, "configuracion_id");
-    }
 
 }

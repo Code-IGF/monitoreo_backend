@@ -82,8 +82,15 @@ class LogController extends Controller
     {
         $user = auth()->user();
         $fecha=$request['fecha'];
-        //where('name', 'LIKE', '%'.'Prof'.'%')
-        $logs=Log::with('archivo')->where('user_id', $user->id, $fecha)->where('created_at','LIKE','%'.$fecha.'%')->get();
+        $rol=$user->roles()->get();
+        if($rol[0]->name=="Empleado")
+        {
+            //where('name', 'LIKE', '%'.'Prof'.'%')
+            $logs=Log::with('archivo')->where('user_id', $user->id, $fecha)->where('created_at','LIKE','%'.$fecha.'%')->get();
+        }
+        if($rol[0]->name=="Supervisor"){
+            $logs=Log::with('archivo')->where('user_id', $request['idUsuario'], $fecha)->where('created_at','LIKE','%'.$fecha.'%')->get();
+        }
         return $logs;
     }
 

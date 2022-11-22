@@ -52,19 +52,22 @@ class LogController extends Controller
                 return response()->json($error);
             }
         $user = auth()->user()->id;
+        $tipo=$request['tipo'];
+        $tipo=$tipo+1;
         $log = request(['descripcion']);
         $log['user_id'] = $user;
         if($request->file()){
             $file = $request->file('imagen')->store('public/log');
             $urlFile = Storage::url($file);
             $archivo = [       'url'=> $urlFile,
-                            'tipo' => 'png',
+                            'tipo' => 1,
                             'nombre' => 'nombre',];
             $archivo = Archivo::create($archivo);
-            $log['archivo_id'] = $archivo['archivo_id'];
+            $log['archivo_id'] = $archivo['id'];
         }
         $log = Log::create($log);
-  
+        
+        $log['tipo']=$tipo;
         return response()->json($log);
      
 

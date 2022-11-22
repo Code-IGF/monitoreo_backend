@@ -7,29 +7,23 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
 class NuevoLog implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $tipo;
-    public $nombreChannel;
+
+    public $message;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($tipo,$nombreChannel)
+    public function __construct($message)
     {
-        $this->tipo = $tipo;
-        $this->nombreChannel = $nombreChannel;
-    }
-    public function broadcastWith() {
-        return [
-            "tipo" => $this->tipo,
-            "nombreChannel" => $this->nombreChannel,
-        ];
+        $this->message = $message;
     }
 
     /**
@@ -39,6 +33,7 @@ class NuevoLog implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel("usuario") ;
+        // return new PrivateChannel('channel-name');
+        return new Channel('usuario') ;
     }
 }

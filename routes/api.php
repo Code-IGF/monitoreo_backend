@@ -97,7 +97,7 @@ Route::post('new-message', function (Request $request) {
     return 'ok';
 });
 Route::post('new-log', function (Request $request) {
-    event(new NuevoLog($request->tipo, $request->nombreChannel));
+    event(new NuevoLog($request->message));
     return 'ok';
 });
 

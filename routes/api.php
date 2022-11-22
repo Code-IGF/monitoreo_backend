@@ -11,7 +11,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\RoleController;
 use App\Events\NewMessage;
-
+use App\Events\NuevoLog;
 use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\SalaTrabajoController;
@@ -94,6 +94,10 @@ Route::post("sala/{salaTrabajo}",[SalaTrabajoController::class, "update"]);
 //Ruta para socket de prueba
 Route::post('new-message', function (Request $request) {
     event(new NewMessage($request->message));
+    return 'ok';
+});
+Route::post('new-log', function (Request $request) {
+    event(new NuevoLog($request->tipo, $request->nombreChannel));
     return 'ok';
 });
 

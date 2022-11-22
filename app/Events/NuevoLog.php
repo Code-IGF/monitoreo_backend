@@ -39,6 +39,6 @@ class NuevoLog implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel($this->nombreChannel) ;
+        return new Channel("usuario") ;
     }
 }

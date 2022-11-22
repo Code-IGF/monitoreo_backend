@@ -25,6 +25,12 @@ class NuevoLog implements ShouldBroadcast
         $this->tipo = $tipo;
         $this->nombreChannel = $nombreChannel;
     }
+    public function broadcastWith() {
+        return [
+            "tipo" => $this->tipo,
+            "nombreChannel" => $this->nombreChannel,
+        ];
+    }
 
     /**
      * Get the channels the event should broadcast on.

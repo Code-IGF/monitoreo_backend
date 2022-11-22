@@ -90,6 +90,7 @@ Route::get('mensajes/{mensaje}',[MensajeController::class, 'show']);
 Route::delete('mensajes/{mensaje}',[MensajeController::class, 'destroy']);
 
 Route::post("sala/{salaTrabajo}",[SalaTrabajoController::class, "update"]);
+Route::get("sala/datales/{salaTrabajo}",[SalaTrabajoController::class, "show"]);
 
 //Ruta para socket de prueba
 Route::post('new-message', function (Request $request) {

@@ -53,7 +53,8 @@ class SalaTrabajoController extends Controller
      */
     public function show(SalaTrabajo $salaTrabajo)
     {
-        //
+        $equipo=Equipo::with('usuarios.roles')->find($salaTrabajo->equipos_id);
+        return response()->json($equipo);
     }
 
     /**

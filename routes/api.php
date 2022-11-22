@@ -104,3 +104,4 @@ Route::post('new-log', function (Request $request) {
 
 //Funciones del controlador log
 Route::post('log',[LogController::class, 'store']);
+Route::post('log/usuario', [LogController::class, 'logWhere']);

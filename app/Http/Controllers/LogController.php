@@ -10,6 +10,10 @@ use App\Models\Archivo;
 
 class LogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -72,6 +76,15 @@ class LogController extends Controller
      
 
 
+    }
+
+    public function logWhere(Request $request)
+    {
+        $user = auth()->user();
+        $fecha=$request['fecha'];
+        //where('name', 'LIKE', '%'.'Prof'.'%')
+        $logs=Log::with('archivo')->where('user_id', $user->id, $fecha)->where('created_at','LIKE','%'.$fecha.'%')->get();
+        return $logs;
     }
 
     /**

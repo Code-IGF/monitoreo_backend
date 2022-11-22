@@ -21,6 +21,6 @@ class Log extends Model
     }
 
     public function archivo(){
-        return $this->hasMany(Archivo::class,'archivo_id');
+        return $this->hasMany(Archivo::class,'id');
     }
 }
